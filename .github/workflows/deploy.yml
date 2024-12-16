@@ -32,6 +32,6 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
 
-          scp -i ~/.ssh/id_rsa -r ./ $SERVER_USERNAME@$SERVER_IP:/path/to/your/app
+          scp -i ~/.ssh/id_rsa -r ./ $SERVER_USERNAME@$SERVER_IP:/home/ubuntu/hello-world
 
           ssh -i ~/.ssh/id_rsa $SERVER_USERNAME@$SERVER_IP "cd /home/ubuntu/hello-world && npm install && npm start"
