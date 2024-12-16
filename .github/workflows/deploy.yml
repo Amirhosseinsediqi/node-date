@@ -27,14 +27,11 @@ jobs:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
         run: |
-          # Install SSH key
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
 
-          # Copy files to server
           scp -i ~/.ssh/id_rsa -r ./ $SERVER_USERNAME@$SERVER_IP:/path/to/your/app
 
-          # SSH into server and run the application
-          ssh -i ~/.ssh/id_rsa $SERVER_USERNAME@$SERVER_IP "cd /path/to/your/app && npm install && npm start"
+          ssh -i ~/.ssh/id_rsa $SERVER_USERNAME@$SERVER_IP "cd /home/ubuntu/hello-world && npm install && npm start"
